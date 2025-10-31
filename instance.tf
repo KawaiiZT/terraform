@@ -4,9 +4,11 @@ resource "aws_instance" "servers" {
   instance_type = var.instance_type
   key_name      = var.key_name
 
-  vpc_security_group_ids = [aws_security_group.instance_sg.id]
+  subnet_id                   = local.public_subnet_ids[count.index == 0 ? 0 : 1]
+  vpc_security_group_ids      = [aws_security_group.instance_sg.id]
+  associate_public_ip_address = true
 
-  tags = merge(local.default_tags, {
-    Name = local.instance_tags
-  })
+  tags = {
+    Name = "${local.instance_tags}"
+  }
 }

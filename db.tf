@@ -10,7 +10,7 @@ resource "aws_db_instance" "default" {
   skip_final_snapshot         = true
   deletion_protection         = false
 
-  tags = merge(local.default_tags, {
-    Name = var.db_name
-  })
+  tags = {
+    Name = local.db_tags
+  }
 }
