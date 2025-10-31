@@ -18,7 +18,9 @@ resource "aws_security_group" "elb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(local.default_tags, { Name = local.elb_tags })
+  tags = {
+    Name = local.elb_tags
+  }
 }
 
 resource "aws_security_group" "instance_sg" {
@@ -44,5 +46,7 @@ resource "aws_security_group" "instance_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(local.default_tags, { Name = local.secgroup })
+  tags = {
+    Name = local.secgroup
+  }
 }

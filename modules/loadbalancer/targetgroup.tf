@@ -11,7 +11,9 @@ resource "aws_lb_target_group" "tg" {
     matcher  = var.hc_matcher
   }
 
-  tags = merge(var.default_tags, { Name = var.tg_name })
+  tags = {
+    Name = var.tg_name 
+  }
 }
 
 resource "aws_lb_target_group_attachment" "instances" {
